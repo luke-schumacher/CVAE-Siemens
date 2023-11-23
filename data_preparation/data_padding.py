@@ -58,5 +58,5 @@ df[['Sequences', 'Durations']] = df.apply(lambda row: pad_data(row, desired_sequ
 df = df.dropna()
 
 # Save the modified DataFrame back to a CSV file
-df.to_csv('encoded_data/prepared_data.csv', index=False)
+df.to_csv('encoded_data/prepared_data_4.csv', index=False)
 print("\nProcessing completed. Check padded_data.csv for the modified data.")

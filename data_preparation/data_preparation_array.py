@@ -7,7 +7,7 @@ def format_array(arr):
     return '[' + ', '.join(map(lambda x: str(int(x)), arr)) + ']'
 
 # Load your dataset
-data = pd.read_csv('encoded_data/seq_&_duration_encoded.csv')
+data = pd.read_csv('encoded_data/seq_&_duration_encoded_data.csv')
 
 # Strip whitespaces from column names
 data.columns = data.columns.str.strip()

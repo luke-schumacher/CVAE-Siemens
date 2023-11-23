@@ -21,11 +21,11 @@ body5_data += ["none"] * (max_length - len(body5_data))
 
 # Create a dataframe
 df = pd.DataFrame({
-    "Head": body1_data,
-    "Prostate": body2_data,
-    "Face": body3_data,
-    "Abdomenpelvis": body4_data,
-    "Pelvis": body5_data
+    "Body 1": body1_data,
+    "Body 2": body2_data,
+    "Body 3": body3_data,
+    "Body 4": body4_data,
+    "Body 5": body5_data
 })
 
 # Plot the table with title
@@ -34,7 +34,7 @@ ax.axis('off')
 tbl = table(ax, df, loc='center', colWidths=[0.2]*len(df.columns))
 tbl.auto_set_font_size(False)
 tbl.set_fontsize(10)
-tbl.scale(1.2, 1.2)  # Adjust the table size if needed
+tbl.scale(1.1, 1.1)  # Adjust the table size if needed
 
 # Save the figure
 plt.savefig('table_image.png', bbox_inches='tight')

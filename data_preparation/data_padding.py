@@ -2,7 +2,7 @@ import pandas as pd
 import ast
 
 # Read the CSV file into a pandas DataFrame
-df = pd.read_csv('encoded_data/split_patientID_array.csv')
+df = pd.read_csv('encoded_data/75609/split_patientID_array.csv')
 
 def pad_data(row, desired_sequence_length, desired_duration_length):
     sequences = ast.literal_eval(row['Sequences'])

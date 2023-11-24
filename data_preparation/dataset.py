@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 # Load your dataset
-data = pd.read_csv('data/176625.csv')
+data = pd.read_csv('data/75609.csv')
 
 # Verification
 print("Original Data:")

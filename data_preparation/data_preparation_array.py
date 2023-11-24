@@ -24,24 +24,24 @@ for patient in unique_patients:
     patient_data = data[data['PatientID'] == patient]
 
     # Count the unique body parts
-    bodypart_count = patient_data['BodyPart'].nunique()
+    Group_count = patient_data['Group'].nunique()
 
     # Only proceed if there is exactly one unique body part
-    if bodypart_count == 1:
+    if Group_count == 1:
         print(f"Processing PatientID: {patient} ")
-        print(f"BodyPart count: {bodypart_count}")
+        print(f"Group count: {Group_count}")
 
         # Extract the encoded sequence columns
         sequence_columns = [col for col in data.columns if col.startswith('Seq_')]
 
-        # Select the relevant columns including 'duration' and 'BodyPart'
-        relevant_columns = ['BodyPart'] + sequence_columns + ['duration']
+        # Select the relevant columns including 'duration' and 'Group'
+        relevant_columns = ['Group'] + sequence_columns + ['duration']
 
         # Extract the relevant columns and convert to numpy array
         patient_array = patient_data[sequence_columns + ['duration']].to_numpy()
 
-        # Extract the label (BodyPart)
-        label = patient_data['BodyPart'].iloc[0]
+        # Extract the label (Group)
+        label = patient_data['Group'].iloc[0]
 
         # Separate duration and sequence columns
         sequences = patient_array[:, :-1]  # Exclude the last column (duration)
@@ -64,7 +64,7 @@ for patient in unique_patients:
         print(f"Skipping PatientID: {patient} as it has more than one unique body part.\n")
 
 # Create a DataFrame from the final_data list
-final_df = pd.DataFrame(final_data, columns=['PatientID', 'BodyPart', 'Sequences', 'Durations'])
+final_df = pd.DataFrame(final_data, columns=['PatientID', 'Group', 'Sequences', 'Durations'])
 
 # Save the final DataFrame as a CSV file
 final_df.to_csv('encoded_data/split_patientID_array.csv', index=False)

@@ -1,7 +1,6 @@
-import csv
-
-# Encoded data
-encoded_data = [[1,
+# Input data
+input_data = [
+    [[1,
   0,
   0,
   0,
@@ -1651,33 +1650,13 @@ encoded_data = [[1,
   0,
   0,
   0]]
-
-import csv
-
-# Updated Sequence Mapping
-sequence_mapping = [
-    ["Seq_AALScout"], ["Seq_BEAT"], ["Seq_BEAT_FQ"], ["Seq_BEAT_FQ_nav"], ["Seq_BEAT_epi"], ["Seq_BEAT_interactive"],
-    ["Seq_BEAT_map"], ["Seq_CV_nav"], ["Seq_MRF"], ["Seq_blade"], ["Seq_bs_calibration"], ["Seq_ciss"], ["Seq_csi_se"],
-    ["Seq_csi_slaser"], ["Seq_dess"], ["Seq_ep2d_asl"], ["Seq_ep2d_bold"], ["Seq_ep2d_diff"], ["Seq_ep2d_fid"], ["Seq_ep2d_pace"],
-    ["Seq_ep2d_se"], ["Seq_ep2d_se_mre"], ["Seq_ep2d_se_ms"], ["Seq_ep_seg_fid"], ["Seq_fast_tse"], ["Seq_fid"], ["Seq_fl3d_ce"],
-    ["Seq_fl3d_rd"], ["Seq_fl3d_vibe"], ["Seq_fl_pc"], ["Seq_fl_peri_tof"], ["Seq_gre"], ["Seq_greMRE"], ["Seq_gre_b0map"],
-    ["Seq_gre_field_mapping"], ["Seq_gre_phs"], ["Seq_gre_proj"], ["Seq_gre_wave"], ["Seq_haste"], ["Seq_haste_diff"],
-    ["Seq_medic"], ["Seq_petra"], ["Seq_psif"], ["Seq_qDWI"], ["Seq_resolve"], ["Seq_se"], ["Seq_se_15b130"], ["Seq_se_17rb130"],
-    ["Seq_se_mc"], ["Seq_semac"], ["Seq_space"], ["Seq_space_nav"], ["Seq_svs_se"], ["Seq_svs_st"], ["Seq_svs_st_histo"],
-    ["Seq_tfl"], ["Seq_tfl_b1map"], ["Seq_tfl_cb"], ["Seq_tgse"], ["Seq_tgse_asl"], ["Seq_trufi"], ["Seq_trufi_freqScout"],
-    ["Seq_tse"], ["Seq_tse_MDME"], ["Seq_tse_dixon"], ["Seq_twist"]
 ]
 
-# Decode the data
-decoded_data = [sequence_mapping[i][0] for i, sequence in enumerate(encoded_data) if 1 in sequence]
+# Transpose the input data to swap rows and columns
+transposed_data = list(map(list, zip(*input_data)))
 
-# Output to CSV with quotechar to handle special characters
-output_csv = "model_results/body2_176398.csv"
-with open(output_csv, mode='w', newline='') as file:
-    writer = csv.writer(file, quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    writer.writerow(["Sequence"])
-    for sequence in decoded_data:
-        writer.writerow([sequence])
+# Filter out rows with all zeros
+filtered_data = [row for row in transposed_data if any(row)]
 
-print(f"Decoded data has been saved to {output_csv}")
-
+# Output the result
+print(filtered_data)

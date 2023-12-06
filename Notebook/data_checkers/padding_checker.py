@@ -3,7 +3,7 @@ import ast  # For parsing string representations of lists
 import numpy as np
 
 # Read the CSV file
-df = pd.read_csv("Notebook/prepared_data_176398.csv")
+df = pd.read_csv("Notebook/prepared_data_COMBINED.csv")
 
 # Function to count elements in a list (ignoring the specific values)
 def count_elements(lst):

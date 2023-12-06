@@ -19,7 +19,7 @@ def count_unique_names(csv_file_path, column_name):
 csv_file_path = 'output_file.csv'
 
 # Replace 'group' with the actual column name you want to analyze
-column_name = 'Group'
+column_name = 'BodyGroup'
 
 # Call the function
 count_unique_names(csv_file_path, column_name)

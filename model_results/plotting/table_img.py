@@ -2,30 +2,24 @@ import matplotlib.pyplot as plt
 from pandas.plotting import table
 import pandas as pd
 
-# Define your data
-body1_data = ["AALScout", "BEAT", "BEAT_FQ", "BEAT_map", "CV_nav", "dess", "ep2d_diff", "ep2d_fid", "fast_tse", "fl3d_ce", "fl3d_vibe", "gre", "gre_field_mapping", "haste", "qDWI", "resolve", "space", "svs_se", "svs_st", "tse"]
-body2_data = ["AALScout", "BEAT", "BEAT_FQ", "BEAT_map", "CV_nav", "dess", "ep2d_diff", "ep2d_fid", "fast_tse", "fl3d_ce", "fl3d_vibe", "gre", "gre_field_mapping", "haste", "qDWI", "resolve", "space", "svs_se", "svs_st", "tfl_b1map"]
-body3_data = ["AALScout", "BEAT", "BEAT_FQ", "BEAT_map", "CV_nav", "dess", "ep2d_diff", "ep2d_fid", "fast_tse", "fl3d_ce", "fl3d_vibe", "gre", "gre_field_mapping", "haste", "qDWI", "resolve", "space", "svs_se", "svs_st", "tfl", "tfl_b1map"]
-body4_data = ["AALScout", "BEAT", "BEAT_FQ", "BEAT_map", "CV_nav", "dess", "ep2d_diff", "ep2d_fid", "fast_tse", "fl3d_ce", "fl3d_vibe", "gre", "gre_field_mapping", "haste", "qDWI", "resolve", "svs_se"]
-body5_data = ["AALScout", "BEAT", "BEAT_FQ", "BEAT_map", "CV_nav", "dess", "ep2d_diff", "ep2d_fid", "fast_tse", "fl3d_ce", "fl3d_vibe", "gre", "gre_field_mapping", "haste", "qDWI", "resolve", "svs_se"]
+# Your knee data
+knee_175608 = ["Seq_gre", "Seq_gre", "Seq_tse", "Seq_tse", "Seq_tse", "Seq_tse", "Seq_tse", "Seq_tse"]
+knee_182627 = ["Seq_AALScout", "Seq_tse", "Seq_tse_dixon", "Seq_tse_dixon", "Seq_tse", "Seq_fl3d_vibe", "Seq_tse_dixon", "Seq_fl3d_vibe", "Seq_haste"]
+knee_202531 = ["Seq_AALScout", "Seq_tse", "Seq_space", "Seq_tse", "Seq_tse", "Seq_tse", "Seq_tse"]
 
 # Find the maximum length among all arrays
-max_length = max(len(body1_data), len(body2_data), len(body3_data), len(body4_data), len(body5_data))
+max_length = max(len(knee_175608), len(knee_182627), len(knee_202531))
 
 # Fill arrays with "N/A" for missing values
-body1_data += ["none"] * (max_length - len(body1_data))
-body2_data += ["none"] * (max_length - len(body2_data))
-body3_data += ["none"] * (max_length - len(body3_data))
-body4_data += ["none"] * (max_length - len(body4_data))
-body5_data += ["none"] * (max_length - len(body5_data))
+knee_175608 += ["none"] * (max_length - len(knee_175608))
+knee_182627 += ["none"] * (max_length - len(knee_182627))
+knee_202531 += ["none"] * (max_length - len(knee_202531))
 
 # Create a dataframe
 df = pd.DataFrame({
-    "Body 1": body1_data,
-    "Body 2": body2_data,
-    "Body 3": body3_data,
-    "Body 4": body4_data,
-    "Body 5": body5_data
+    "Knee 175608": knee_175608,
+    "Knee 182627": knee_182627,
+    "Knee 202531": knee_202531
 })
 
 # Plot the table with title
@@ -37,5 +31,5 @@ tbl.set_fontsize(10)
 tbl.scale(1.1, 1.1)  # Adjust the table size if needed
 
 # Save the figure
-plt.savefig('table_image.png', bbox_inches='tight')
+plt.savefig('knee_table.png', bbox_inches='tight')
 plt.show()

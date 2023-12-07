@@ -16,10 +16,10 @@ def count_unique_names(csv_file_path, column_name):
     print(f"The column '{column_name}' contains {unique_names} unique names.")
 
 # Replace 'your_file.csv' with the path to your CSV file
-csv_file_path = 'output_file.csv'
+csv_file_path = 'output_file_182627.csv'
 
 # Replace 'group' with the actual column name you want to analyze
-column_name = 'BodyGroup'
+column_name = 'Group'
 
 # Call the function
 count_unique_names(csv_file_path, column_name)

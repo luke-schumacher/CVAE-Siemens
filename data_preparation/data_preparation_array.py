@@ -7,7 +7,7 @@ def format_array(arr):
     return '[' + ', '.join(map(lambda x: str(int(x)), arr)) + ']'
 
 # Load your dataset
-data = pd.read_csv('encoded_data/seq_&_duration_encoded.csv')
+data = pd.read_csv('encoded_data/182627/unified_seq_182627.csv')
 
 # Strip whitespaces from column names
 data.columns = data.columns.str.strip()
@@ -24,7 +24,7 @@ for patient in unique_patients:
     patient_data = data[data['PatientID'] == patient]
 
     # Count the unique body parts
-    body_group_count = patient_data['BodyGroup'].nunique()
+    body_group_count = patient_data['Group'].nunique()
 
     # Only proceed if there is exactly one unique body part
     if body_group_count == 1:
@@ -32,16 +32,16 @@ for patient in unique_patients:
         print(f"BodyGroup count: {body_group_count}")
 
         # Extract the encoded sequence columns
-        sequence_columns = [col for col in data.columns if col.startswith('_')]
+        sequence_columns = [col for col in data.columns if col.startswith('Seq_')]
 
         # Select the relevant columns including 'duration' and 'BodyGroup'
-        relevant_columns = ['BodyGroup'] + sequence_columns + ['duration']
+        relevant_columns = ['Group'] + sequence_columns + ['duration']
 
         # Extract the relevant columns and convert to numpy array
         patient_array = patient_data[sequence_columns + ['duration']].to_numpy()
 
         # Extract the label (BodyGroup)
-        label = patient_data['BodyGroup'].iloc[0]
+        label = patient_data['Group'].iloc[0]
 
         # Separate duration and sequence columns
         sequences = patient_array[:, :-1]  # Exclude the last column (duration)
@@ -64,9 +64,9 @@ for patient in unique_patients:
         print(f"Skipping PatientID: {patient} as it has more than one unique body part.\n")
 
 # Create a DataFrame from the final_data list
-final_df = pd.DataFrame(final_data, columns=['PatientID', 'BodyGroup', 'Sequences', 'Durations'])
+final_df = pd.DataFrame(final_data, columns=['PatientID', 'Group', 'Sequences', 'Durations'])
 
 # Save the final DataFrame as a CSV file
-final_df.to_csv('encoded_data/split_patientID_array.csv', index=False)
+final_df.to_csv('encoded_data/182627/split_patientID_array.csv', index=False)
 
 print("split_patientID_array.csv\n")

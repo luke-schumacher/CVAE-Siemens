@@ -20,9 +20,9 @@ def subset_label_formatter(x):
 venn3(subsets=(len(knee_175608), len(knee_182627), len(knee_175608.intersection(knee_182627)),
                len(knee_202531), len(knee_175608.intersection(knee_202531)), len(knee_182627.intersection(knee_202531)),
                len(knee_175608.intersection(knee_182627).intersection(knee_202531))),
-      set_labels=('Knee 175608\n' + str(len(knee_175608)), 'Knee 182627\n' + str(len(knee_182627)), 'Knee 202531\n' + str(len(knee_202531))),
-      set_colors=('skyblue', 'lightgreen', 'lightcoral'),
+      set_labels=('Knee 175608', 'Knee 182627', 'Knee 202531'), set_colors=('skyblue', 'lightgreen', 'lightcoral'),
       alpha=0.7, ax=plt.gca(), subset_label_formatter=subset_label_formatter)
+
 
 # Title
 plt.title('Venn Diagram of Knee Sequences across 3 Customers')

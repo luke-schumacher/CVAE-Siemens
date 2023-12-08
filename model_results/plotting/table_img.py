@@ -40,7 +40,7 @@ ax.axis('off')
 tbl = table(ax, df_combined, loc='center', colWidths=[0.2]*len(df_combined.columns))
 tbl.auto_set_font_size(False)
 tbl.set_fontsize(10)
-tbl.scale(1.1, 1.1)  # Adjust the table size if needed
+tbl.scale(1.1, 1.1)  
 
 # Save the figure
 plt.savefig('plotting/plot_results/brain_table.png', bbox_inches='tight')

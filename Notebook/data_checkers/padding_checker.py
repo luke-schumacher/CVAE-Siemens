@@ -3,7 +3,7 @@ import ast  # For parsing string representations of lists
 import numpy as np
 
 # Read the CSV file
-df = pd.read_csv("Notebook/prepared_data_175608.csv")
+df = pd.read_csv("Notebook/prepared_data_182627.csv")
 
 # Function to count elements in a list (ignoring the specific values)
 def count_elements(lst):
@@ -19,4 +19,4 @@ df['Durations_Count'] = df['Durations'].apply(lambda x: len(ast.literal_eval(x))
 df['Sequences_Shape'] = df['Sequences'].apply(lambda x: np.array(ast.literal_eval(x)).shape)
 
 # Save the updated DataFrame to a new CSV file
-df.to_csv("output_file_175608.csv", index=False)
+df.to_csv("output_file_182627.csv", index=False)

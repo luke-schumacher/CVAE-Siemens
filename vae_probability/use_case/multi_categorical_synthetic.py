@@ -56,6 +56,28 @@ def prepare_sequence_data(file='Notebook_duration/prepared_data_182627.csv'):
 
     return sequences
 
+def post_process_sequences_and_export(samples_list, output_file='generated_samples.csv'):
+    # Create a list to store individual samples
+    individual_samples = []
+
+    for sample in samples_list:
+        # Remove the 1 at the end from each sample
+        processed_sample = sample[:, :-1]
+        
+        # Convert the processed sample to a list of lists
+        list_of_lists_sample = processed_sample.tolist()
+
+        # Wrap the list of lists sample in double brackets and append to the list
+        individual_samples.extend([[list_of_lists_sample]])
+
+    # Convert the list of individual samples to a DataFrame
+    df = pd.DataFrame(individual_samples, columns=['Generated_Samples'])
+
+    # Export the DataFrame to a CSV file
+    df.to_csv(output_file, index=False)
+    print(f"Generated samples have been exported to {output_file}.")
+
+
 def main(epochs=1):
     print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
     print(tf.test.gpu_device_name())
@@ -101,11 +123,9 @@ def main(epochs=1):
         sample = example_output_distributions.sample().numpy()
         samples_list.append(sample)
 
-    # Convert samples to DataFrame
-    samples_df = pd.DataFrame(np.vstack(samples_list), columns=[f'Sample_{i}' for i in range(samples_list[0].shape[1])])
+    # Post-process and export generated samples
+    post_process_sequences_and_export(samples_list)
 
-    # Save samples to CSV
-    samples_df.to_csv('generated_samples.csv', index=False)
 
 if __name__ == '__main__':
-    main(epochs=200)
+    main(epochs=1)

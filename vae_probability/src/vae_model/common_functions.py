@@ -21,7 +21,7 @@ def build_vae_from_models(encoder, decoder):
     vae = tfk.Model(inputs=encoder.inputs,
                     outputs=decoder(encoder.outputs[0]))
 
-    vae.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=5e-4),
+    vae.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=5e-4), #increase to test (add parameter to modify) (e-3)
                 loss=neg_log_likelihood)
 
     return vae

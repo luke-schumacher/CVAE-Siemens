@@ -3,7 +3,7 @@ import tensorflow_probability as tfp
 import src.tfp_layers.distribution_layer as tfpol
 
 tfd = tfp.distributions
-tfk = tf.keras
+tfk = tf.keras #type: ignore
 tfkl = tfk.layers
 tfpl = tfp.layers
 
@@ -48,6 +48,7 @@ def build_vae_submodels(input_shape,
         tfkl.GRU(2 * base_depth, activation=tf.nn.leaky_relu, return_sequences=True),
         tfkl.GRU(base_depth, activation=tf.nn.leaky_relu, return_sequences=True),
         tfkl.GRU(base_depth, activation=tf.nn.leaky_relu, return_sequences=True),
+        tfkl.GRU(2, activation=tf.nn.leaky_relu, return_sequences=True),
         tfkl.Flatten(),
 
         # reconstruction distribution

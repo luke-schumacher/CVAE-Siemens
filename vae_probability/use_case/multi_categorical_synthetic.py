@@ -56,7 +56,7 @@ def prepare_sequence_data(file='Notebook_duration/prepared_data_182627.csv'):
 
     return sequences
 
-def post_process_sequences_and_export(samples_list, output_file='generated_samples.csv'):
+def post_process_sequences_and_export(samples_list, output_file='vae_probability/output_data/generated_samples.csv'):
     # Create a list to store individual samples
     individual_samples = []
 
@@ -128,4 +128,4 @@ def main(epochs=1):
 
 
 if __name__ == '__main__':
-    main(epochs=1)
+    main(epochs=100)

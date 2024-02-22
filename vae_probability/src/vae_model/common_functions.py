@@ -1,7 +1,8 @@
 import tensorflow as tf
-
 from src.vae_model.multi_categorical_vae import tfk
 
+# Define learning rate
+learning_rate = 1e-3
 
 def log_likelihood(x, rv_x):
     if isinstance(rv_x, list):
@@ -17,21 +18,21 @@ def neg_log_likelihood(x, rv_x):
         return -rv_x.log_prob(x)
 
 
-def build_vae_from_models(encoder, decoder):
+def build_vae_from_models(encoder, decoder, learning_rate=learning_rate):
     vae = tfk.Model(inputs=encoder.inputs,
                     outputs=decoder(encoder.outputs[0]))
 
-    vae.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=5e-4), #increase to test (add parameter to modify) (e-3)
+    vae.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate),
                 loss=neg_log_likelihood)
 
     return vae
 
 
-def build_conditional_vae_from_models(encoder, decoder):
+def build_conditional_vae_from_models(encoder, decoder, learning_rate=learning_rate):
     vae = tfk.Model(inputs=encoder.inputs,
                     outputs=decoder(encoder.outputs + [encoder.inputs[-1]]))
 
-    vae.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=5e-4),
+    vae.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate),
                 loss=neg_log_likelihood)
 
     return vae

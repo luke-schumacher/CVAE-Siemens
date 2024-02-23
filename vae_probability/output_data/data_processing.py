@@ -2,7 +2,7 @@ import csv
 
 # Read data from the CSV file
 input_file_path = 'vae_probability/output_data/generated_samples.csv'
-output_file_path = 'vae_probability/output_data/processed_samples.csv'
+output_file_path = 'vae_probability/output_data/processed_samples_high_lrrate.csv'
 
 with open(input_file_path, 'r') as infile:
     reader = csv.reader(infile)

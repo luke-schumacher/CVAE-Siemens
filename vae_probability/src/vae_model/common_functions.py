@@ -1,7 +1,7 @@
 import tensorflow as tf
 from src.vae_model.multi_categorical_vae import tfk
 
-# Define learning rate
+# Change learning rate
 learning_rate = 1e-3
 
 def log_likelihood(x, rv_x):

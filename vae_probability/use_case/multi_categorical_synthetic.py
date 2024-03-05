@@ -46,7 +46,7 @@ def prepare_sequence_data(file='Notebook_duration/prepared_data_202531.csv'):
 
         df['Sequences'] = df['Sequences'].apply(literal_eval)
         df['Sequences'] = df['Sequences'].apply(lambda x: add_pseudo_state(x))
-        return df
+        return df #make it so only the knee parts are trained and analysed for best results
 
     # Load data from CSV file
     df = read_data_from_csv(file)
@@ -117,7 +117,7 @@ def main(epochs=1):
     example_output_distributions = vae(example_data_points)
 
     # Samples
-    num_samples = 5
+    num_samples = 5 #can be put to 25, mean deviation
     samples_list = []
     for n_sample in range(num_samples):
         sample = example_output_distributions.sample().numpy()
@@ -129,3 +129,5 @@ def main(epochs=1):
 
 if __name__ == '__main__':
     main(epochs=100)
+    
+    #for one body group one model that creates nice synthetic data, after that we can move on to the next body groups

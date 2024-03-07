@@ -7,7 +7,7 @@ def format_array(arr):
     return '[' + ', '.join(map(lambda x: str(int(x)), arr)) + ']'
 
 # Load your dataset
-data = pd.read_csv('encoded_data/182627/unified_seq_182627.csv')
+data = pd.read_csv('encoded_data/Knee/unified_seq_202531_knee.csv')
 
 # Strip whitespaces from column names
 data.columns = data.columns.str.strip()
@@ -24,12 +24,12 @@ for patient in unique_patients:
     patient_data = data[data['PatientID'] == patient]
 
     # Count the unique body parts
-    body_group_count = patient_data['Group'].nunique()
+    body_BodyGroup_count = patient_data['Group'].nunique()
 
     # Only proceed if there is exactly one unique body part
-    if body_group_count == 1:
+    if body_BodyGroup_count == 1:
         print(f"Processing PatientID: {patient} ")
-        print(f"BodyGroup count: {body_group_count}")
+        print(f"BodyGroup count: {body_BodyGroup_count}")
 
         # Extract the encoded sequence columns
         sequence_columns = [col for col in data.columns if col.startswith('Seq_')]
@@ -67,6 +67,6 @@ for patient in unique_patients:
 final_df = pd.DataFrame(final_data, columns=['PatientID', 'Group', 'Sequences', 'Durations'])
 
 # Save the final DataFrame as a CSV file
-final_df.to_csv('encoded_data/182627/split_patientID_array.csv', index=False)
+final_df.to_csv('encoded_data/Knee/split_patientID_array.csv', index=False)
 
 print("split_patientID_array.csv\n")

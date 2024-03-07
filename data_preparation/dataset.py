@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 # Load your dataset
-data = pd.read_csv('data/182627.csv')
+data = pd.read_csv('data/202531_knee.csv')
 
 # Verification
 print("Original Data:")
@@ -22,6 +22,6 @@ one_hot_encoded.replace({True: 1, False: 0}, inplace=True)
 print("\nOne-Hot Encoded and Standardized Data:")
 print(one_hot_encoded.head())
 
-one_hot_encoded.to_csv('encoded_data/182627/seq_&_duration_encoded.csv', index=False)
+one_hot_encoded.to_csv('encoded_data/Knee/seq_&_duration_encoded.csv', index=False)
 
 print("Data encoding and processing successful!")

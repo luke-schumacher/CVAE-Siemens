@@ -2,7 +2,7 @@ import pandas as pd
 import ast
 
 # Read the CSV file into a pandas DataFrame
-df = pd.read_csv('encoded_data/182627/split_patientID_array.csv')
+df = pd.read_csv('encoded_data/Knee/split_patientID_array.csv')
 
 def pad_data(row, desired_sequence_length, desired_duration_length):
     sequences = ast.literal_eval(row['Sequences'])
@@ -58,5 +58,5 @@ df[['Sequences', 'Durations']] = df.apply(lambda row: pad_data(row, desired_sequ
 df = df.dropna()
 
 # Save the modified DataFrame back to a CSV file
-df.to_csv('encoded_data/182627/prepared_data_182627.csv', index=False)
+df.to_csv('encoded_data/Knee/prepared_data_202531_knee.csv', index=False)
 print("\nProcessing completed. Check padded_data.csv for the modified data.")

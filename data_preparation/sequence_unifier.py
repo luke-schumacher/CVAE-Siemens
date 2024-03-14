@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Read the initial data from a CSV file
-csv_file_path = 'encoded_data/Knee/flawless_seq.csv'  # Replace with your actual file path
+csv_file_path = 'encoded_data/Brain/flawless_seq_176625.csv'  # Replace with your actual file path
 df = pd.read_csv(csv_file_path)
 
 # Your desired sequences organized for readability
@@ -29,7 +29,7 @@ for sequence in missing_sequences:
 df = df[sorted(df.columns)]
 
 # Save the final DataFrame as a CSV file
-output_csv_path = 'encoded_data/Knee/unified_seq_202531_knee.csv'  # Replace with your desired output file path
+output_csv_path = 'encoded_data/Brain/unified_seq_176625.csv'  # Replace with your desired output file path
 df.to_csv(output_csv_path, index=False)
 
 # Print the final DataFrame

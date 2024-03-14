@@ -22,7 +22,7 @@ def build_vae_from_models(encoder, decoder, learning_rate=learning_rate):
     vae = tfk.Model(inputs=encoder.inputs,
                     outputs=decoder(encoder.outputs[0]))
 
-    vae.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate),
+    vae.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate), #type: ignore
                 loss=neg_log_likelihood)
 
     return vae
@@ -32,7 +32,7 @@ def build_conditional_vae_from_models(encoder, decoder, learning_rate=learning_r
     vae = tfk.Model(inputs=encoder.inputs,
                     outputs=decoder(encoder.outputs + [encoder.inputs[-1]]))
 
-    vae.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate),
+    vae.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate), #type: ignore
                 loss=neg_log_likelihood)
 
     return vae

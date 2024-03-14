@@ -7,7 +7,7 @@ def format_array(arr):
     return '[' + ', '.join(map(lambda x: str(int(x)), arr)) + ']'
 
 # Load your dataset
-data = pd.read_csv('encoded_data/Knee/unified_seq_202531_knee.csv')
+data = pd.read_csv('encoded_data/Brain/unified_seq_176625.csv')
 
 # Strip whitespaces from column names
 data.columns = data.columns.str.strip()
@@ -67,6 +67,6 @@ for patient in unique_patients:
 final_df = pd.DataFrame(final_data, columns=['PatientID', 'Group', 'Sequences', 'Durations'])
 
 # Save the final DataFrame as a CSV file
-final_df.to_csv('encoded_data/Knee/split_patientID_array.csv', index=False)
+final_df.to_csv('encoded_data/Brain/split_patientID_array_176625.csv', index=False)
 
 print("split_patientID_array.csv\n")

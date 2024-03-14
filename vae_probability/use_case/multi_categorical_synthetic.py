@@ -24,7 +24,7 @@ tfpl = tfp.layers
 tfd = tfp.distributions
 
 
-def prepare_sequence_data(file='Notebook_duration/prepared_data_TR.csv'):
+def prepare_sequence_data(file='Notebook_duration/prepared_data_176625_Brain.csv'):
 
     def add_1_at_end(sequence):
         # Check if the sequence contains only zeros
@@ -56,7 +56,7 @@ def prepare_sequence_data(file='Notebook_duration/prepared_data_TR.csv'):
 
     return sequences
 
-def post_process_sequences_and_export(samples_list, output_file='vae_probability/output_data/generated_samples_TR.csv'):
+def post_process_sequences_and_export(samples_list, output_file='vae_probability/output_data/generated_samples_176625_Brain.csv'):
     # Create a list to store individual samples
     individual_samples = []
 
@@ -117,7 +117,7 @@ def main(epochs=1):
     example_output_distributions = vae(example_data_points)
 
     # Samples
-    num_samples = 5 #can be put to 25, mean deviation
+    num_samples = 25 #can be put to 25, mean deviation
     samples_list = []
     for n_sample in range(num_samples):
         sample = example_output_distributions.sample().numpy()
@@ -128,6 +128,6 @@ def main(epochs=1):
 
 
 if __name__ == '__main__':
-    main(epochs=100)
+    main(epochs=25)
     
     #for one body group one model that creates nice synthetic data, after that we can move on to the next body groups

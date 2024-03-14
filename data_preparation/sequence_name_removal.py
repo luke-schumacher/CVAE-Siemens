@@ -12,7 +12,7 @@ def replace_column_names(csv_path, output_path):
     df.to_csv(output_path, index=False)
 
 # Example usage:
-input_csv_path = 'encoded_data/Knee/seq_&_duration_encoded.csv'
-output_csv_path = 'encoded_data/Knee/flawless_seq.csv'
+input_csv_path = 'encoded_data/Brain/seq_&_duration_encoded_176015.csv'
+output_csv_path = 'encoded_data/Brain/flawless_seq_176015.csv'
 replace_column_names(input_csv_path, output_csv_path)
 

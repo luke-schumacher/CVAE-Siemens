@@ -95,10 +95,11 @@ def main(epochs=1):
     encoded_size = 16  # Update with your desired encoded size
     base_depth = 16  # Update with your desired base depth
 
-    encoder, decoder = build_vae_submodels(input_shape, encoded_size, base_depth)
+    encoder, decoder, sampler = build_vae_submodels(input_shape, encoded_size, base_depth)
 
     print(encoder.summary())
     print(decoder.summary())
+    #print(sampler.summary())#to create synthetic data
 
     vae = build_vae_from_models(encoder, decoder)
 
@@ -117,7 +118,7 @@ def main(epochs=1):
     example_output_distributions = vae(example_data_points)
 
     # Samples
-    num_samples = 25 #can be put to 25, mean deviation
+    num_samples = 0 #can be put to 25, mean deviation
     samples_list = []
     for n_sample in range(num_samples):
         sample = example_output_distributions.sample().numpy()
@@ -126,8 +127,24 @@ def main(epochs=1):
     # Post-process and export generated samples
     post_process_sequences_and_export(samples_list)
 
+     # Samples
+    num_samples = 20 #can be put to 25, mean deviation
+    samples_list = []
+    for n_sample in range(num_samples):
+        random_latent = np.random.normal(0,1, size=(1,encoded_size))
+        sample = decoder(random_latent).sample().numpy()
+        samples_list.append(sample)
+        #create lots of samples that do not exist, spaces where we dont have training data
+        #only create data that we actually have, find the latent code, like stable diffusion, no image time dependent
+        #diffusion model for time data, latent code with time structure, learn to piece together the latent time factor
+        #create latent codes
+        
+
+    # Post-process and export generated samples
+    post_process_sequences_and_export(samples_list)
 
 if __name__ == '__main__':
-    main(epochs=25)
+    main(epochs=5)
+    
     
     #for one body group one model that creates nice synthetic data, after that we can move on to the next body groups

@@ -57,6 +57,12 @@ def build_vae_submodels(input_shape,
         tfpol.IndependentOneHotCategorical(input_shape),
     ], name="Decoder")
 
-    return encoder, decoder
+    sampler = tfk.Sequential([
+        
+        decoder
+         
+    ], name ="Sampler")
+    
+    return encoder, decoder, sampler
 
 

@@ -35,7 +35,7 @@ for encoded_seq in encoded_sequences:
         corresponding_sequences_list.append(corresponding_sequence)
 
 # Specify the CSV file path
-csv_file_path = "vae_probability/decode_data/176625/Brain_176625_3.csv"
+csv_file_path = "vae_probability/decode_data/176625/Brain_176625_5.csv"
 
 # Write the corresponding sequences to the CSV file
 with open(csv_file_path, mode='w', newline='') as csv_file:

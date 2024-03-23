@@ -128,7 +128,7 @@ def main(epochs=1):
     post_process_sequences_and_export(samples_list)
 
      # Samples
-    num_samples = 20 #can be put to 25, mean deviation
+    num_samples = 28 #can be put to 25, mean deviation
     samples_list = []
     for n_sample in range(num_samples):
         random_latent = np.random.normal(0,1, size=(1,encoded_size))
@@ -144,7 +144,7 @@ def main(epochs=1):
     post_process_sequences_and_export(samples_list)
 
 if __name__ == '__main__':
-    main(epochs=5)
+    main(epochs=100)
     
     
     #for one body group one model that creates nice synthetic data, after that we can move on to the next body groups

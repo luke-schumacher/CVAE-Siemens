@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Read the CSV file
-df = pd.read_csv("vae_probability/decode_data/176015/Brain_176015_2.csv", header=None, names=['Sequence'])
+df = pd.read_csv("vae_probability/decode_data/176625/Brain_176625_5.csv", header=None, names=['Sequence'])
 
 # Initialize variables
 sequences_dict = {}
@@ -34,10 +34,10 @@ for key, value in sequences_dict.items():
 new_df = pd.DataFrame(sequences_dict)
 
 # Write the headers (first row) without modification
-with open("vae_probability/decode_data/176015/Brain_176015_3.csv", "w") as f:
+with open("vae_probability/decode_data/176625/Brain_176625_6.csv", "w") as f:
     f.write(",".join(new_df.columns) + "\n")
 
 # Write the remaining data (excluding the headers) with each field enclosed within double quotes
-new_df.to_csv("vae_probability/decode_data/176015/Brain_176015_3.csv", index=False, mode="a", header=False, quoting=1)
+new_df.to_csv("vae_probability/decode_data/176625/Brain_176625_6.csv", index=False, mode="a", header=False, quoting=1)
 
-print("Parsed sequences saved to Brain_176015_3.csv")
+print("Parsed sequences saved to Brain_176625_6.csv")

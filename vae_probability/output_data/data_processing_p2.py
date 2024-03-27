@@ -2,7 +2,7 @@ import csv
 
 # Read sequences from CSV file
 sequences = []
-with open('vae_probability/output_data/generated_samples_176015_Brain.csv', 'r') as file:
+with open('vae_probability/output_data/generated_samples_176625_Brain.csv', 'r') as file:
     reader = csv.reader(file)
     for row in reader:
         # Remove initial "[[" and trailing "]]"
@@ -10,7 +10,7 @@ with open('vae_probability/output_data/generated_samples_176015_Brain.csv', 'r')
         sequences.append([modified_row])
 
 # Write modified sequences to a new CSV file
-with open('vae_probability/output_data/generated_samples_176015_Brain1.csv', 'w', newline='') as file:
+with open('vae_probability/output_data/generated_samples_176625_Brain.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerows(sequences)
 

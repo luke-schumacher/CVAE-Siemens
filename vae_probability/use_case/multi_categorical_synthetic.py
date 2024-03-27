@@ -24,7 +24,7 @@ tfpl = tfp.layers
 tfd = tfp.distributions
 
 
-def prepare_sequence_data(file='Notebook_duration/prepared_data_176625_Brain.csv'):
+def prepare_sequence_data(file='Notebook_duration/prepared_data_176625_Brain.csv'): #Modify to change output
 
     def add_1_at_end(sequence):
         # Check if the sequence contains only zeros

@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Read the CSV file, without considering any row as headers
-df = pd.read_csv("vae_probability/decode_data/176625/Brain_176625_6.csv", header=None)
+df = pd.read_csv("vae_probability/decode_data/176625/Brain_176625_10.csv", header=None)
 
 # Remove the first row (index 0)
 df = df.iloc[1:]
@@ -26,4 +26,4 @@ if current_columns < 28:
         df[f"Sequence_{current_columns + i + 1}"] = ""
 
 # Save the modified CSV file, overwriting the original
-df.to_csv("vae_probability/decode_data/176625/Brain_176625_7.csv", index=False)
+df.to_csv("vae_probability/decode_data/176625/Brain_176625_11.csv", index=False)

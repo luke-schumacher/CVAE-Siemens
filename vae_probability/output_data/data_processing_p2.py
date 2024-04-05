@@ -10,7 +10,7 @@ with open('vae_probability/output_data/generated_samples_176625_Brain.csv', 'r')
         sequences.append([modified_row])
 
 # Write modified sequences to a new CSV file
-with open('vae_probability/output_data/generated_samples_176625_Brain.csv', 'w', newline='') as file:
+with open('vae_probability/output_data/generated_samples_176625_Brain_1.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerows(sequences)
 

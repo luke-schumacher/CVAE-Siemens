@@ -6,7 +6,7 @@ from collections import Counter
 from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
 # File paths
-predicted_file_path = "vae_probability/decode_data/176625/Brain_176625_6.csv"
+predicted_file_path = "vae_probability/decode_data/176625/Brain_176625_7.csv"
 actual_file_path = "vae_probability/decode_data/176625/ORIGINAL_176625.csv"
 output_directory = "vae_probability/data_eval/"
 

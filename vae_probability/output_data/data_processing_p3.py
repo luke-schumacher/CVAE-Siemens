@@ -1,8 +1,8 @@
 # Input file path
-input_file = "vae_probability/output_data/generated_samples_176625_Brain_1.csv"
+input_file = "vae_probability/output_data/generated_samples_176625_Brain_FINAL.csv"
 
 # Output file path
-output_file = "vae_probability/output_data/generated_samples_176625_Brain_2.csv"
+output_file = "vae_probability/output_data/generated_samples_176625_Brain_FINAL.csv"
 
 # Function to remove leading and trailing " from each element
 def remove_quotes(element):

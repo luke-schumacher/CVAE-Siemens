@@ -56,13 +56,30 @@ def build_vae_submodels(input_shape,
                    activation=None),
         tfpol.IndependentOneHotCategorical(input_shape),
     ], name="Decoder")
+    
+    decoder2 = tfk.Sequential([
+    tfkl.InputLayer(input_shape=[encoded_size]),
+
+    # Dense layer after reshaping
+    tfkl.Dense(input_shape[0] * base_depth // 2, activation=tf.nn.leaky_relu),
+    tfkl.Reshape([input_shape[0], base_depth // 2]),
+
+    # Reduced number of GRU layers
+    tfkl.GRU(base_depth, activation=tf.nn.leaky_relu, return_sequences=True),
+    tfkl.GRU(base_depth // 2, activation=tf.nn.leaky_relu, return_sequences=True),
+
+    # Simplified dense layer
+    tfkl.Dense(input_shape[1], activation=None),
+    tfpol.IndependentOneHotCategorical(input_shape),
+    ], name="Decoder2")
+
 
     sampler = tfk.Sequential([
         
-        decoder
+        decoder2
          
     ], name ="Sampler")
     
-    return encoder, decoder, sampler
+    return encoder, decoder2, sampler
 
 

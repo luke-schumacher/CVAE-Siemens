@@ -1,15 +1,19 @@
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error
+from scipy.stats import pearsonr
 
 class SequenceEvaluator:
     def __init__(self):
         self.noise_loss_tracker = []
 
-    def evaluate(self, actual_sequences, predicted_sequences, sequence_names):
+    def evaluate(self, actual_sequences, predicted_sequences, sequence_names, output_directory):
         noise_loss = 0.0
         seq_losses = []
+        seq_maes = []
+        seq_pccs = []
+        results = []
 
         num_samples = min(len(actual_sequences), len(predicted_sequences))
 
@@ -19,20 +23,53 @@ class SequenceEvaluator:
             
             # Compare sequences of potentially different lengths
             seq_length = min(len(actual_seq), len(predicted_seq))
-            seq_loss = mean_squared_error(actual_seq[:seq_length], predicted_seq[:seq_length])
-            seq_losses.append(seq_loss)
-            noise_loss += seq_loss
+            mse = mean_squared_error(actual_seq[:seq_length], predicted_seq[:seq_length])
+            mae = mean_absolute_error(actual_seq[:seq_length], predicted_seq[:seq_length])
+            pcc, _ = pearsonr(actual_seq[:seq_length], predicted_seq[:seq_length])
+
+            seq_losses.append(mse)
+            seq_maes.append(mae)
+            seq_pccs.append(pcc)
+            noise_loss += mse
+
+            results.append([sequence_names[i], mse, mae, pcc])
 
         noise_loss /= num_samples
         self.noise_loss_tracker.append(noise_loss)
         
-        # Print results with sequence names
-        print(f"Noise Loss: {noise_loss}")
-        print("Sequence Losses:")
-        for seq_name, loss in zip(sequence_names, seq_losses):
-            print(f"{seq_name}: {loss}")
+        # Save results to CSV
+        results_df = pd.DataFrame(results, columns=["Sequence Name", "MSE", "MAE", "PCC"])
+        results_df.to_csv(output_directory + "evaluation_results.csv", index=False)
 
         return predicted_sequences
+
+    def evaluate_self_similarity(self, sequences, sequence_names, dataset_name, output_directory):
+        seq_losses = []
+        seq_maes = []
+        seq_pccs = []
+        results = []
+
+        num_samples = len(sequences)
+
+        for i in range(num_samples):
+            for j in range(i + 1, num_samples):
+                seq1 = sequences[i]
+                seq2 = sequences[j]
+                
+                seq_length = min(len(seq1), len(seq2))
+                mse = mean_squared_error(seq1[:seq_length], seq2[:seq_length])
+                mae = mean_absolute_error(seq1[:seq_length], seq2[:seq_length])
+                pcc, _ = pearsonr(seq1[:seq_length], seq2[:seq_length])
+
+                seq_losses.append(mse)
+                seq_maes.append(mae)
+                seq_pccs.append(pcc)
+
+                results.append([f"Pair {i}-{j}", mse, mae, pcc])
+
+        # Save results to CSV
+        results_df = pd.DataFrame(results, columns=["Pair", "MSE", "MAE", "PCC"])
+        results_df.to_csv(output_directory + f"self_similarity_{dataset_name}.csv", index=False)
 
 def load_and_encode_sequences(file_path):
     df = pd.read_csv(file_path, header=0)
@@ -70,8 +107,17 @@ if len(predicted_sequences) != len(actual_sequences):
 # Create an evaluator instance
 evaluator = SequenceEvaluator()
 
-# Evaluate the sequences
-pred_sequences = evaluator.evaluate(actual_sequences, predicted_sequences, actual_sequence_names)
+# Evaluate the sequences against each other
+print("Evaluating predicted sequences against actual sequences:")
+pred_sequences = evaluator.evaluate(actual_sequences, predicted_sequences, actual_sequence_names, output_directory)
+
+# Evaluate the self-similarity within the actual sequences
+print("\nEvaluating self-similarity within actual sequences:")
+evaluator.evaluate_self_similarity(actual_sequences, actual_sequence_names, "Actual_Data", output_directory)
+
+# Evaluate the self-similarity within the predicted sequences
+print("\nEvaluating self-similarity within predicted sequences:")
+evaluator.evaluate_self_similarity(predicted_sequences, pred_sequence_names, "Predicted_Data", output_directory)
 
 # Save evaluation results
 save_evaluation_results(pred_sequences, actual_sequences, output_directory)

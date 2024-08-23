@@ -90,8 +90,8 @@ def save_evaluation_results(pred_sequences, actual_sequences, output_directory):
     print(f"Evaluation results saved to {output_directory}")
 
 # File paths
-predicted_file_path = "vae_probability/decode_data/176625/Brain_176625_7.csv"
-actual_file_path = "vae_probability/decode_data/176625/ORIGINAL_176625.csv"
+predicted_file_path = "vae_probability/decode_data/TR/KNEE_TR_Bulk1.csv"
+actual_file_path = "vae_probability/decode_data/TR/KNEE_TR_Bulk1.csv"
 output_directory = "vae_probability/data_eval/"
 
 # Load sequences

@@ -24,7 +24,7 @@ tfpl = tfp.layers
 tfd = tfp.distributions
 
 
-def prepare_sequence_data(file='Notebook_duration/prepared_data_176625_Brain.csv'): #Modify to change output
+def prepare_sequence_data(file='Notebook_duration/prepared_data_TR.csv'): #Modify to change output
 
     def add_1_at_end(sequence):
         # Check if the sequence contains only zeros
@@ -56,7 +56,7 @@ def prepare_sequence_data(file='Notebook_duration/prepared_data_176625_Brain.csv
 
     return sequences
 
-def post_process_sequences_and_export(samples_list, output_file='vae_probability/output_data/generated_samples_176625_Brain.csv'):
+def post_process_sequences_and_export(samples_list, output_file='vae_probability/output_data/generated_samples_TR.csv'):
     # Create a list to store individual samples
     individual_samples = []
 

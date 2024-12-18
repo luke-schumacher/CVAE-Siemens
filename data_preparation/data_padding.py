@@ -2,7 +2,7 @@ import pandas as pd
 import ast
 
 # Read the CSV file into a pandas DataFrame
-df = pd.read_csv('encoded_data/Brain/split_patientID_array_176015.csv')
+df = pd.read_csv('encoded_data/Brain/split_patientID_array_176625.csv')
 
 def pad_data(row, desired_sequence_length, desired_duration_length):
     sequences = ast.literal_eval(row['Sequences'])
@@ -34,7 +34,7 @@ def pad_data(row, desired_sequence_length, desired_duration_length):
     print(f"Padded Sequences for PatientID {row['PatientID']}: {sequences}")
 
     # Pad durations with the specified dummy data
-    durations += [[-0.7464702259125702]] * (desired_duration_length - len(durations))
+    durations += [[0]] * (desired_duration_length - len(durations))
     print(f"Padded Durations for PatientID {row['PatientID']}: {durations}")
 
     # Ensure both 'Sequences' and 'Durations' have the same length
@@ -58,5 +58,5 @@ df[['Sequences', 'Durations']] = df.apply(lambda row: pad_data(row, desired_sequ
 df = df.dropna()
 
 # Save the modified DataFrame back to a CSV file
-df.to_csv('encoded_data/Brain/prepared_data_176015_Brain.csv', index=False)
+df.to_csv('encoded_data/Brain/prepared_data_176625_Brain.csv', index=False)
 print("\nProcessing completed. Check padded_data.csv for the modified data.")

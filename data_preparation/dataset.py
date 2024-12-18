@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 
 # Load your dataset
 data = pd.read_csv('data/176625_Brain.csv')
@@ -12,14 +12,14 @@ print(data.head())
 # Binary columns for each unique value in the 'SeqGroup' column
 one_hot_encoded = pd.get_dummies(data, columns=['Sequence'], prefix='')
 
-# Standardisation
-scaler = StandardScaler()
+# Normalization
+scaler = MinMaxScaler()
 one_hot_encoded[['duration']] = scaler.fit_transform(one_hot_encoded[['duration']])
 
 # Replace True and False with 1 and 0
 one_hot_encoded.replace({True: 1, False: 0}, inplace=True)
 
-print("\nOne-Hot Encoded and Standardized Data:")
+print("\nOne-Hot Encoded and Normalized Data:")
 print(one_hot_encoded.head())
 
 one_hot_encoded.to_csv('encoded_data/Brain/seq_&_duration_encoded_176625.csv', index=False)
